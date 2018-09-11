@@ -1,16 +1,11 @@
 $(document).ready(function () {
-<<<<<<< HEAD
-  // var $characterUsername = $("#character-username");
-  // var $characterStock = $("#character-stock");
-=======
 // var $characterUsername = $("#character-username");
 // var $characterStock = $("#character-stock");
->>>>>>> master
-  var $characterPrice = 1000;
+  var $characterPrice = 1000 * (1 + characterChange);
   // $("#character-price");
   // var $opponentUsername = $("#opponent-username");
   // var $opponentStock = $("#opponent-stock");
-  var $opponentPrice = 1200;
+  var $opponentPrice = 1000 * (1 + opponentChange);
   // $("#opponent-price");
 
   function fight() {

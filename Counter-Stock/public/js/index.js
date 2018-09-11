@@ -34,27 +34,15 @@ var API = {
   }
 };
 
-// function that gets the real time stock price. cant get it to render to the page because of asynchronous stuff
-function getQuote(ticker) {
-
-  var queryURL = "https://api.iextrading.com/1.0/stock/" + ticker + "/price";
-  $.ajax({
-    url: queryURL,
-    method: "GET",
-  }).then(function (response) {
-    console.log(ticker + " price is: " + response);
-    return response;
-  });
-}
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshCharacters = function () {
   API.getCharacters().then(function (data) {
     // console.log(data);
 
     var $character = data.map(function (character) {
-      
+
       var $a = $("<a>")
-        .text(character.username + " " + character.stockChoice + " " + character.stockPrice)
+        .text(character.username + " " + character.stockChoice + " $" + character.stockPrice)
         .attr("href", "#collapseExample" + character.id);
 
       var $li = $("<li>")
@@ -96,41 +84,22 @@ var handleFormSubmit = function (event) {
     username: $characterUsername.val().trim(),
     stockChoice: $characterStock.val().trim(),
     password: $characterPassword.val().trim(),
-<<<<<<< HEAD
-    stockPrice: getQuote($characterStock.val().trim())
 
-  };
-
-=======
-  
   };
   getQuote1($characterStock.val().trim());
-  
-  
->>>>>>> master
+
+
   if (!(character.username && character.stockChoice)) {
     alert("You must enter an example text and description!");
     return;
   }
-<<<<<<< HEAD
-  setTimeout(function () {
 
-    console.log(character);
-    API.saveCharacter(character).then(function () {
-=======
-  
-    API.saveCharacter(character).then(function() {
->>>>>>> master
-      refreshCharacters();
-    });
+  // API.saveCharacter(character).then(function () {
+  //   refreshCharacters();
+  // });
 
 
-<<<<<<< HEAD
-  }, 2000);
 
-=======
-  
->>>>>>> master
 
   $characterUsername.val("");
   $characterStock.val("");
@@ -160,8 +129,8 @@ $characterList.on("click", ".delete", handleDeleteBtnClick);
 refreshCharacters();
 
 function getQuote1(ticker) {
-  console.log("get quote 1 is working")
-  console.log(ticker)
+  console.log("get quote 1 is working");
+  console.log(ticker);
   var queryURL = "https://api.iextrading.com/1.0/stock/" + ticker + "/price";
   $.ajax({
     url: queryURL,
