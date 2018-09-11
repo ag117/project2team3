@@ -52,9 +52,9 @@ var refreshCharacters = function () {
     // console.log(data);
 
     var $character = data.map(function (character) {
-      
+
       var $a = $("<a>")
-        .text(character.username + " " + character.stockChoice + " " + character.stockPrice)
+        .text(character.username + " " + character.stockChoice + " $" + character.stockPrice)
         .attr("href", "#collapseExample" + character.id);
 
       var $li = $("<li>")
@@ -106,9 +106,9 @@ var handleFormSubmit = function (event) {
     return;
   }
   
-    // API.saveCharacter(character).then(function() {
-    //   refreshCharacters();
-    // });
+  // API.saveCharacter(character).then(function() {
+  //   refreshCharacters();
+  // });
 
 
   
@@ -160,3 +160,11 @@ function getQuote1(ticker) {
     });
   });
 }
+
+var opponentId;
+
+$("a").on("click", function() {
+  opponentId = $(this).attr("data-id");
+});
+
+modules.export(opponentId);
