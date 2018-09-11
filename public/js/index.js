@@ -37,13 +37,13 @@ var API = {
 // function that gets the real time stock price. cant get it to render to the page because of asynchronous stuff
 function getQuote(ticker) {
 
-  var queryURL = "https://api.iextrading.com/1.0/stock/" + ticker + "/quote";
+  var queryURL = "https://api.iextrading.com/1.0/stock/" + ticker + "/price";
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    console.log(ticker + " price is: " + response.changePercent);
-    return response.changePercent;
+    console.log(ticker + " price is: " + response);
+    return response;
   });
 }
 // refreshExamples gets new examples from the db and repopulates the list
@@ -141,20 +141,20 @@ $characterList.on("click", ".delete", handleDeleteBtnClick);
 refreshCharacters();
 
 function getQuote1(ticker) {
-  // console.log("get quote 1 is working")
-  // console.log(ticker)
-  var queryURL = "https://api.iextrading.com/1.0/stock/" + ticker + "/quote";
+  console.log("get quote 1 is working")
+  console.log(ticker)
+  var queryURL = "https://api.iextrading.com/1.0/stock/" + ticker + "/price";
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    // console.log(ticker + " price is: " + response);
-    // console.log("character is line below");
-    // console.log(character);
-    // console.log("character is line above");
-    character.stockPrice = response.changePercent;
-    // console.log(character);
-    // console.log(response);
+    console.log(ticker + " price is: " + response);
+    console.log("character is line below");
+    console.log(character);
+    console.log("character is line above");
+    character.stockPrice = response;
+    console.log(character);
+    console.log(response);
     API.saveCharacter(character).then(function () {
       refreshCharacters();
     });
