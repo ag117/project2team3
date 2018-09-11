@@ -160,3 +160,11 @@ function getQuote1(ticker) {
     });
   });
 }
+
+var opponentId;
+
+$("a").on("click", function() {
+  opponentId = $(this).attr("data-id");
+});
+
+modules.export(opponentId);

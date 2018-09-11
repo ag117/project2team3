@@ -8,9 +8,9 @@
           <ul id="character-list" class="list-group">
             {{#each Characters}}
             <li data-id="{{Characters.id}}" class="list-group-item">
-              <a class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{Characters.id}}">{{Characters.text}}</a>
+              <a class="btn btn-link collapsed" type="button"data-toggle="collapse" data-target="#collapse{{Characters.id}}">{{Characters.text}}</a>
               <button class="btn btn-danger float-right delete">ｘ</button>
-              <a href="/fight" class="btn btn-primary float-right">Battle this guy</a>
+              <a href="/fight" class="btn btn-primary float-right" data-id="{{Characters.id}}">Battle this guy</a>
             </li>
             {{/each}}
           </ul>

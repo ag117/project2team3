@@ -1,9 +1,10 @@
+var opponentId = require("./index");
+
 $(document).ready(function () {
 
   var yourValue;
   var theirValue;
   var youId = 1;
-  var opponentId;
   var characterChange;
   var opponentChange;
 
