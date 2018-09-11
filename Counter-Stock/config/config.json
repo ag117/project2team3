@@ -1,23 +1,23 @@
 {
-  "development": {
-    "username": "lusd53n0wuu0zu2d",
-    "password": "e2k4h66dc22eckmm",
-    "database": "esy6pv920g78i2ah",
-    "port": 3306,
-    "host": "y2w3wxldca8enczv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "lusd53n0wuu0zu2d",
-    "password": "e2k4h66dc22eckmm",
-    "database": "esy6pv920g78i2ah",
-    "port": 3306,
-    "host": "y2w3wxldca8enczv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    "dialect": "mysql",
-    "logging": false
-  },
-  "production": {
-    "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql"
+    "development": {
+      "username": "lusd53n0wuu0zu2d",
+      "password": "e2k4h66dc22eckmm",
+      "database": "esy6pv920g78i2ah",
+      "port": 3306,
+      "host": "y2w3wxldca8enczv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      "dialect": "mysql"
+    },
+    "test": {
+      "username": "lusd53n0wuu0zu2d",
+      "password": "e2k4h66dc22eckmm",
+      "database": "esy6pv920g78i2ah",
+      "port": 3306,
+      "host": "y2w3wxldca8enczv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      "dialect": "mysql",
+      "logging": false
+    },
+    "production": {
+      "use_env_variable": "JAWSDB_URL",
+      "dialect": "mysql"
+    }
   }
-}

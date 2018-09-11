@@ -1,3 +1,46 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+ .classfont{
+  font-family: 'Alegreya Sans SC', sans-serif;
+
+
+
+  
+ }
+  body{ 
+    background-image: url(../images/image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+  #counterstock{
+  color: rgb(3, 129, 20);
+  text-align: center;
+  position: fixed;    
+  top: 35 px;
+  left: 26%;
+  font-size: 100px;
+  }
+
+  #quote{
+    color: antiquewhite;
+    text-align: center;
+    position: fixed;
+    bottom: 1%;
+    left:38%;
+    font-size: 40px;
+  }
+
+  #dollarsignbutton{
+    width: 20%;
+    height: 350px;
+    cursor: pointer;
+    position: fixed;
+    top: 32%;
+    left: 40%;
+  }

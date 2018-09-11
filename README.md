@@ -41,6 +41,10 @@ Stage 3:
         
     Back End:
          Create fight logic
+         Add in 
+         Make sure database updates total value daily (daily value will be (previoue days value * %change of stock value) )
+         Create Authenication for log in (Thomas)
+
     
 Stage 4: 
     Test and add in any icebox functionality that we have time for
@@ -58,3 +62,54 @@ Eric Galassi - .js wizard
 Momin Amad - Creating Database and API 
 Spencer Vigil - Connect front end to back end transition to front end
 Thomas Milnes - Connect front end to back end transition to front end
+
+
+List of Stock Tickers
+
+Highly Volatile:
+
+FRED
+NLST
+RMNI
+BLPH
+NVMM
+RSLS
+TLRY
+PRQR
+NMIH
+SRNE
+
+Top 10 growth this year:
+
+MILN
+JSMD
+ARVR
+SQLV
+BOSS
+TTAC
+JSML
+FLQS
+SCAP
+XITK
+
+Popular 20:
+AAPL
+INTC
+GOOG
+AMZN
+MSFT
+AZO
+PFE
+NFLX
+FB
+BRK-A
+BABA
+JNJ
+JPM
+XOM
+BAC
+WMT
+WFC
+V
+PG
+BUD
