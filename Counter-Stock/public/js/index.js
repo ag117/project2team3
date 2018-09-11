@@ -34,6 +34,18 @@ var API = {
   }
 };
 
+// function that gets the real time stock price. cant get it to render to the page because of asynchronous stuff
+function getQuote(ticker) {
+
+  var queryURL = "https://api.iextrading.com/1.0/stock/" + ticker + "/quote";
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(ticker + " price is: " + response.changePercent);
+    return response.changePercent;
+  });
+}
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshCharacters = function () {
   API.getCharacters().then(function (data) {
@@ -84,22 +96,22 @@ var handleFormSubmit = function (event) {
     username: $characterUsername.val().trim(),
     stockChoice: $characterStock.val().trim(),
     password: $characterPassword.val().trim(),
-
+  
   };
   getQuote1($characterStock.val().trim());
-
-
+  
+  
   if (!(character.username && character.stockChoice)) {
     alert("You must enter an example text and description!");
     return;
   }
-
-  // API.saveCharacter(character).then(function () {
+  
+  // API.saveCharacter(character).then(function() {
   //   refreshCharacters();
   // });
 
 
-
+  
 
   $characterUsername.val("");
   $characterStock.val("");
@@ -129,20 +141,20 @@ $characterList.on("click", ".delete", handleDeleteBtnClick);
 refreshCharacters();
 
 function getQuote1(ticker) {
-  console.log("get quote 1 is working");
-  console.log(ticker);
-  var queryURL = "https://api.iextrading.com/1.0/stock/" + ticker + "/price";
+  // console.log("get quote 1 is working")
+  // console.log(ticker)
+  var queryURL = "https://api.iextrading.com/1.0/stock/" + ticker + "/quote";
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    console.log(ticker + " price is: " + response);
-    console.log("character is line below");
-    console.log(character);
-    console.log("character is line above");
-    character.stockPrice = response;
-    console.log(character);
-    console.log(response);
+    // console.log(ticker + " price is: " + response);
+    // console.log("character is line below");
+    // console.log(character);
+    // console.log("character is line above");
+    character.stockPrice = response.changePercent;
+    // console.log(character);
+    // console.log(response);
     API.saveCharacter(character).then(function () {
       refreshCharacters();
     });

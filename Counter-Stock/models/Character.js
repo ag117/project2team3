@@ -16,6 +16,12 @@ module.exports = function (sequelize, DataTypes) {
     stockPrice: {
       type: DataTypes.DECIMAL(10, 2),
     },
+   
+    totalValue: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1000,
+    }
+    
   });
 
   Character.associate = function (models) {
