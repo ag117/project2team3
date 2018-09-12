@@ -7,74 +7,15 @@
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="example-text">Username</label>
-            <input type="text" id="character-username" class="form-control" aria-describedby="character-username" placeholder="Enter Username">
+            <input type="text" id="character-username" class="form-control" aria-describedby="character-username"
+              placeholder="Enter Username">
           </div>
           <div class="form-group">
             <label for="example-text">Password</label>
-            <input type="password" id="character-password" class="form-control" aria-describedby="character-password" placeholder="Enter Password">
+            <input type="password" id="character-password" class="form-control" aria-describedby="character-password"
+              placeholder="Enter Password">
           </div>
-          <div class="form-group">
-            <label for="character-stock">Stock Choice</label>
-
-            <select class="custom-select custom-select-sm mb-3" id="character-stock">
-              <option selected>Select a Stock</option>
-              <option>FRED</option>
-              <option>NLST</option>
-              <option>RMNI</option>
-              <option>BLPH</option>
-              <option>NVMM</option>
-              <option>RSLS</option>
-              <option>TLRY</option>
-              <option>PRQR</option>
-              <option>NMIH</option>
-              <option>SRNE</option>
-              <option>MILN</option>
-              <option>JSMD</option>
-              <option>ARVR</option>
-              <option>SQLV</option>
-              <option>BOSS</option>
-              <option>TTAC</option>
-              <option>JSML</option>
-              <option>FLQS</option>
-              <option>SCAP</option>
-              <option>XITK</option>
-              <option>AAPL</option>
-              <option>INTC</option>
-              <option>GOOG</option>
-              <option>AMZN</option>
-              <option>MSFT</option>
-              <option>AZO</option>
-              <option>PFE</option>
-              <option>NFLX</option>
-              <option>FB</option>
-              <option>BRK-A</option>
-              <option>BABA</option>
-              <option>JNJ</option>
-              <option>JPM</option>
-              <option>XOM</option>
-              <option>BAC</option>
-              <option>WMT</option>
-              <option>WFC</option>
-              <option>V</option>
-              <option>PG</option>
-              <option>BUD</option>
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </select>
-
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
+          <button id="login-submit" class="btn btn-primary float-right">Login</button>
           <a href="/characters">See the other characters</a>
         </form>
       </div>
@@ -84,3 +25,41 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
+
+<script>
+  var loginBtn = $("#login-submit");
+  var usernameInput = $("input#character-username");
+  var passwordInput = $("input#character-password");
+
+  // When the form is submitted, we validate there's an email and password entered
+  loginBtn.on("click", function (event) {
+    event.preventDefault();
+    var userData = {
+      username: usernameInput.val().trim(),
+      password: passwordInput.val().trim()
+    }
+
+    if (!userData.username || !userData.password) {
+      return;
+    }
+
+    // If we have an email and password we run the loginUser function and clear the form
+    loginUser(userData.username, userData.password);
+    usernameInput.val("");
+    passwordInput.val("");
+  });
+
+  // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+  function loginUser(username, password) {
+    $.post("/api/login", {
+      username: username,
+      password: password
+    }).then(function(data) {
+      window.location.replace(data);
+      // If there's an error, log the error
+    }).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+</script>

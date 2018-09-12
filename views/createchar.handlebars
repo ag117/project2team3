@@ -1,0 +1,122 @@
+<div id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <h1>{{msg}}</h1>
+                <h2>This is our Home Page!</h2>
+                <h3 style="color:azure">Welcome, <span class="member-name"></span>!</h3>
+                <form class="clearfix mb-4" action="POST">
+                    <div class="form-group">
+                        <label for="character-stock">Stock Choice</label>
+
+                        <select class="custom-select custom-select-sm mb-3" id="character-stock">
+                            <option selected>Select a Stock</option>
+                            <option>FRED</option>
+                            <option>NLST</option>
+                            <option>RMNI</option>
+                            <option>BLPH</option>
+                            <option>NVMM</option>
+                            <option>RSLS</option>
+                            <option>TLRY</option>
+                            <option>PRQR</option>
+                            <option>NMIH</option>
+                            <option>SRNE</option>
+                            <option>MILN</option>
+                            <option>JSMD</option>
+                            <option>ARVR</option>
+                            <option>SQLV</option>
+                            <option>BOSS</option>
+                            <option>TTAC</option>
+                            <option>JSML</option>
+                            <option>FLQS</option>
+                            <option>SCAP</option>
+                            <option>XITK</option>
+                            <option>AAPL</option>
+                            <option>INTC</option>
+                            <option>GOOG</option>
+                            <option>AMZN</option>
+                            <option>MSFT</option>
+                            <option>AZO</option>
+                            <option>PFE</option>
+                            <option>NFLX</option>
+                            <option>FB</option>
+                            <option>BRK-A</option>
+                            <option>BABA</option>
+                            <option>JNJ</option>
+                            <option>JPM</option>
+                            <option>XOM</option>
+                            <option>BAC</option>
+                            <option>WMT</option>
+                            <option>WFC</option>
+                            <option>V</option>
+                            <option>PG</option>
+                            <option>BUD</option>
+                        </select>
+
+                    </div>
+                    <button id="create-submit" class="btn btn-primary float-right">Submit</button>
+                    <a href="/characters">See the other characters</a>
+                </form>
+                <div class="card-body accordion" id="accordionExample">
+                    {{!-- <h5 class="card-title">Characters</h5> --}}
+                    <h3>Current Characters: </h3>
+                    <ul id="character-list" class="list-group">
+                        {{#each Characters}}
+                        <li data-id="{{Characters.id}}" class="list-group-item">
+                            <a class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{Characters.id}}">{{Characters.text}}</a>
+                            <button class="btn btn-danger float-right delete">ｘ</button>
+                            <a href="/fight" class="btn btn-primary float-right">Battle this guy</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    {{!-- <p>
+                        <strong>Description:</strong> {{example.description}}</p> --}}
+                    <a href="/index">← Back To Login</a> <a class="navbar-brand" href="/logout" style="float:right">
+                        Logout </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+<script>
+
+    var $characterStock = $("#character-stock");
+    var $createBtn = $("#create-submit");
+
+    $(document).ready(function () {
+
+        // This file just does a GET request to figure out which user is logged in
+        // and updates the HTML on the page
+        $.get("/api/userdata").then(function (data) {
+            $(".member-name").text(data.username);
+        });
+    });
+
+/*
+    var characterCreator = function (event) {
+        event.preventDefault();
+        character = {
+            username: data.username,
+            stockChoice: $characterStock.val().trim(),
+            password: data.password
+            AuthorId: data.id,
+
+        };
+
+
+        if (!(character.stockChoice)) {
+            alert("You must enter an example text and description!");
+            return;
+        }
+
+        $characterStock.val("");
+    };
+ */
+
+    //$createBtn.on("click", characterCreator);
+
+</script>

@@ -1,0 +1,74 @@
+<div id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <h1>{{msg}}</h1>
+                <h2>This is our sign-up Page!</h2>
+                <form class="clearfix mb-4" action="POST">
+                    <div class="form-group">
+                        <label for="example-text">Username</label>
+                        <input type="text" id="signup-username" class="form-control" aria-describedby="signup-username"
+                            placeholder="Enter Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="example-text">Password</label>
+                        <input type="password" id="signup-password" class="form-control" aria-describedby="signup-password"
+                            placeholder="Enter Password">
+                    </div>
+
+                    <button id="signup-submit" class="btn btn-primary float-right">Sign Up</button>
+                    <a href="/characters">See the other characters</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+<script>
+    var submitBtn = $("#signup-submit");
+    var usernameInput = $("input#signup-username");
+    var passwordInput = $("input#signup-password");
+
+    var SignUpFormSubmit = function (event) {
+        event.preventDefault();
+        var newUserData = {
+            username: usernameInput.val().trim(),
+            password: passwordInput.val().trim(),
+        }
+        if (!newUserData.username || !newUserData.password) {
+            return;
+        }
+        // If we have a username and password, run the signUpUser function
+        signUpUser(newUserData.username, newUserData.password);
+        usernameInput.val("");
+        passwordInput.val("");
+
+        // clear inputs
+        $characterUsername.val("");
+        $characterStock.val("");
+        $characterPassword.val("");
+    }
+
+    // Does a post to the signup route. If successful, we are redirected to the members page
+    // Otherwise we log any errors
+    function signUpUser(username, password) {
+        $.post("/api/signup", {
+            username: username,
+            password: password
+        }).then(function (data) {
+            window.location.replace(data);
+            // If there's an error, handle it by throwing up a boostrap alert
+        }).catch(handleLoginErr);
+    }
+
+    function handleLoginErr(err) {
+        $("#alert .msg").text(err.responseJSON);
+        $("#alert").fadeIn(500);
+    }
+
+    submitBtn.on("click", SignUpFormSubmit);
+
+</script>
