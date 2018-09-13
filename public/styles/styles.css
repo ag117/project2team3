@@ -10,12 +10,19 @@
   
  }
   body{ 
-    background-image: url(../images/image.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-size: 100% 100%;
+    /* background-size: 100% 100%; */
     background-attachment: fixed;
     background-position: center;
+  }
+  
+  #main {
+    background-image: url(../images/image.png);
+  }
+
+  #diff {
+    background-image: url(../images/P3.jpg);
   }
 
   #counterstock{

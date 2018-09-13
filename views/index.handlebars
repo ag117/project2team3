@@ -1,72 +1,74 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Username</label>
-            <input type="text" id="character-username" class="form-control" aria-describedby="character-username"
-              placeholder="Enter Username">
-          </div>
-          <div class="form-group">
-            <label for="example-text">Password</label>
-            <input type="password" id="character-password" class="form-control" aria-describedby="character-password"
-              placeholder="Enter Password">
-          </div>
-          <button id="login-submit" class="btn btn-primary float-right">Login</button>
-          <a href="/createchar">See the other characters</a>
-        </form>
-        <a href="/signup">Sign UP!</a>
+<body id="diff">
+  <div id="home">
+    <div class="container">
+      <div class="row">
+        <div class="col-8 offset-2">
+          <h1 class= "classfont" style="color:white">{{msg}}</h1>
+          <h2 style="color:white">This is our Home Page!</h2>
+          <form class="clearfix mb-4" action="POST">
+            <div class="form-group">
+              <label for="example-text" style="color:white">Username</label>
+              <input type="text" id="character-username" class="form-control" aria-describedby="character-username"
+                placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+              <label for="example-text" style="color:white">Password</label>
+              <input type="password" id="character-password" class="form-control" aria-describedby="character-password"
+                placeholder="Enter Password">
+            </div>
+            <button id="login-submit" class="btn btn-primary float-right">Login</button>
+            <a href="/createchar">See the other characters</a>
+          </form>
+          <a href="/signup">Sign UP!</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  var $loginBtn = $("#login-submit");
-  var usernameInput = $("input#character-username");
-  var passwordInput = $("input#character-password");
+  <script>
+    var $loginBtn = $("#login-submit");
+    var usernameInput = $("input#character-username");
+    var passwordInput = $("input#character-password");
 
-  // When the form is submitted, we validate there's an email and password entered
-  $loginBtn.on("click", function (event) {
-    event.preventDefault();
-    var userData = {
-      username: usernameInput.val().trim(),
-      password: passwordInput.val().trim()
+    // When the form is submitted, we validate there's an email and password entered
+    $loginBtn.on("click", function (event) {
+      event.preventDefault();
+      var userData = {
+        username: usernameInput.val().trim(),
+        password: passwordInput.val().trim()
+      }
+
+      if (!userData.username || !userData.password) {
+        return;
+      }
+
+      // If we have an email and password we run the loginUser function and clear the form
+      loginUser(userData.username, userData.password);
+      usernameInput.val("");
+      passwordInput.val("");
+    });
+
+    // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+    function loginUser(username, password) {
+      $.post("/api/login", {
+        username: username,
+        password: password
+      }).then(function (data) {
+        window.location.replace(data);
+        // If there's an error, log the error
+      }).catch(function (err) {
+        console.log(err);
+      });
     }
 
-    if (!userData.username || !userData.password) {
-      return;
+    function getStoreUser() {
+      $.get("/api/userdata").then(function (uData) {
+        var currentUser = uData;
+        console.log(")))))))))))))))))))))))))", currentUser, "(((((((((((((((((((((((((((((((((((");
+        localStorage.setItem("user_data_name", currentUser.username);
+        localStorage.setItem("user_data_pass", currentUser.password);
+      });
     }
 
-    // If we have an email and password we run the loginUser function and clear the form
-    loginUser(userData.username, userData.password);
-    usernameInput.val("");
-    passwordInput.val("");
-  });
-
-  // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
-  function loginUser(username, password) {
-    $.post("/api/login", {
-      username: username,
-      password: password
-    }).then(function (data) {
-      window.location.replace(data);
-      // If there's an error, log the error
-    }).catch(function (err) {
-      console.log(err);
-    });
-  }
-
-  function getStoreUser() {
-    $.get("/api/userdata").then(function (uData) {
-      var currentUser = uData;
-      console.log(")))))))))))))))))))))))))", currentUser, "(((((((((((((((((((((((((((((((((((");
-      localStorage.setItem("user_data_name", currentUser.username);
-      localStorage.setItem("user_data_pass", currentUser.password);
-    });
-  }
-
-</script>
+  </script>
+</body>

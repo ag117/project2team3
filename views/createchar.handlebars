@@ -1,13 +1,14 @@
+<body id="main">
 <div id="home">
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
                 <h1>{{msg}}</h1>
-                <h2>This is our Home Page!</h2>
-                <h3 style="color:azure">Welcome, <span class="member-name"></span>!</h3>
+                <h2 style="color:rgb(3,129,20)">CHOOSE YOUR STOCK</h2>
+                <h3 style="color:white"> Welcome, <span class="member-name"></span>!</h3>
                 <form class="clearfix mb-4" action="POST">
                     <div class="form-group">
-                        <label for="character-stock">Stock Choice</label>
+                        <label for="character-stock" style="color:white">Stock Choice</label>
 
                         <select class="custom-select custom-select-sm mb-3" id="character-stock">
                             <option selected>Select a Stock</option>
@@ -59,7 +60,7 @@
                 </form>
                 <div class="card-body accordion" id="accordionExample">
                     {{!-- <h5 class="card-title">Characters</h5> --}}
-                    <h3>Current Characters: </h3>
+                    <h3 style="color:white">Current Characters: </h3>
                     <ul id="character-list" class="list-group">
                         {{#each Characters}}
                         <li data-id="{{Characters.id}}" class="list-group-item">
@@ -82,3 +83,4 @@
 </div>
 
 <script type="text/javascript" src="js/createchar.js" ></script>
+</body>
